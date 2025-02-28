@@ -13,6 +13,11 @@ require("dotenv").config();
 //var indexRouter = require('./routes/indexRouter');
 var usersRouter = require('./routes/userRouter');
 var osRouter = require('./routes/osRouter');
+var InterventionRouter = require('./routes/InterventionRouter'); 
+var RTIRouter = require('./routes/RTIRouter'); 
+var equipementRouter = require('./routes/equipementRouter'); 
+
+
 
 var app = express();
 
@@ -26,6 +31,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/os', osRouter);
+app.use('/Intervention', InterventionRouter);
+app.use('/RTI',RTIRouter);
+app.use('/equipement',equipementRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
