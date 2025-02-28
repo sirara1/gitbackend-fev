@@ -10,7 +10,6 @@ const http = require('http');
 
 require("dotenv").config();
 
-//var indexRouter = require('./routes/indexRouter');
 var usersRouter = require('./routes/userRouter');
 var osRouter = require('./routes/osRouter');
 var InterventionRouter = require('./routes/InterventionRouter'); 
