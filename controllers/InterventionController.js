@@ -101,3 +101,58 @@ const userModel = require("../models/userSchema");
       res.status(500).json({ message: error.message });
     }
   };
+  module.exports.affect = async (req, res) => {
+    try {
+      const { userId, InterventionId } = req.body;
+  
+      const InterventionById = await InterventionModel.findById(InterventionId);
+  
+      if (!InterventionById) {
+        throw new Error("Intervention introuvable");
+      }
+      const checkIfUserExists = await userModel.findById(userId);
+      if (!checkIfUserExists) {
+        throw new Error("User not found");
+      }
+  
+      await InterventionModel.findByIdAndUpdate(InterventionId, {
+        $set: { techs: userId },
+      });
+  
+      await userModel.findByIdAndUpdate(userId, {
+        $push: { Interventions: InterventionId },
+      });
+  
+      res.status(200).json('affected');
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+  module.exports.desaffect = async (req, res) => {
+    try {
+      const { userId, InterventionId } = req.body;
+  
+      const InterventionById = await InterventionModel.findById(InterventionId);
+  
+      if (!InterventionById) {
+        throw new Error("Intervention introuvable");
+      }
+      const checkIfUserExists = await userModel.findById(userId);
+      if (!checkIfUserExists) {
+        throw new Error("User not found");
+      }
+  
+      await InterventionModel.findByIdAndUpdate(InterventionId, {
+        $unset: { techs: 1 },// null "" 
+      });
+  
+      await userModel.findByIdAndUpdate(userId, {
+        $pull: { Interventions: InterventionId },
+      });
+  
+      res.status(200).json('desaffected');
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+  

@@ -30,6 +30,8 @@ const userSchema = new mongoose.Schema(
     user_image: { type: String, require: false, default: "utilisateur.png" },
     age: {type : Number },
     //count: {type : Number, default:'0'},
+    Interventions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Intervention" }], 
+
   },
   { timestamps: true }
 );
