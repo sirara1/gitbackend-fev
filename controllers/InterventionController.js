@@ -116,7 +116,7 @@ const userModel = require("../models/userSchema");
       }
   
       await InterventionModel.findByIdAndUpdate(InterventionId, {
-        $set: { techs: userId },
+        $set: { techniciens: userId },
       });
   
       await userModel.findByIdAndUpdate(userId, {
@@ -143,7 +143,7 @@ const userModel = require("../models/userSchema");
       }
   
       await InterventionModel.findByIdAndUpdate(InterventionId, {
-        $unset: { techs: 1 },// null "" 
+        $unset: { techniciens: 1 },// null "" 
       });
   
       await userModel.findByIdAndUpdate(userId, {

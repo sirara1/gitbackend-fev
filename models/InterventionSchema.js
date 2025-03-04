@@ -17,7 +17,7 @@ const InterventionSchema = new mongoose.Schema(
         enum: ["normal", "urgent","faible", ],
       },
 
-    techs : [{type : mongoose.Schema.Types.ObjectId,ref: 'user'}] 
+    techniciens : [{type : mongoose.Schema.Types.ObjectId,ref: 'user'}],
     
 },
   { timestamps: true }
