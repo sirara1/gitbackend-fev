@@ -17,7 +17,13 @@ const InterventionSchema = new mongoose.Schema(
         enum: ["normal", "urgent","faible", ],
       },
 
+      typeIntervention: {
+        type: String,
+        enum: ["installation", "maintenace sur place","maintenance depot","livraison", ],
+      },
+
     techniciens : [{type : mongoose.Schema.Types.ObjectId,ref: 'user'}],
+    etat:Boolean,
     
 },
   { timestamps: true }
